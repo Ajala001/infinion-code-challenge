@@ -36,6 +36,7 @@ To run this project, ensure you have the following installed:
     dotnet restore
    
 4. **Update the Connection String:**
+   ```bash
    In appsettings.json, replace the default connection string with your MySQL database connection string:
    {
   "ConnectionStrings": {
@@ -43,17 +44,16 @@ To run this project, ensure you have the following installed:
   }
 }
 
-5. **Apply Database Migrations:**
+6. **Apply Database Migrations:**
    If you're using Entity Framework Core, run the following command:
    ```bash
    dotnet ef database update
 
    (for visual studio)
-   ```bash
    update-database 
 
-API Endpoints
-User Registration API
+**API Endpoints**
+**User Registration API**
 
     Endpoint: POST /api/auth/signUp
     Validation:
@@ -62,11 +62,11 @@ User Registration API
     Response:
     On successful registration, a confirmation email will be sent, and user details will be saved in the database.
 
-User Login API
+**User Login API**
 
     Endpoint: POST /api/auth/signIn
 
-Product CRUD Operations
+**Product CRUD Operations**
 
     GET /api/products: Get a list of all products, with pagination and optional filters.
     GET /api/products/{productId}: Get details of a specific product by its ID.
@@ -74,6 +74,6 @@ Product CRUD Operations
     PUT /api/products/{productId}: Update an existing product.
     DELETE /api/products/{productId}: Delete a product by its ID.
 
-Pagination and Filtering
+**Pagination and Filtering**
 
     GET /api/products/filter?SearchQuery=del&PageNumber=1&PageSize=1: Filter products based on price and name.
