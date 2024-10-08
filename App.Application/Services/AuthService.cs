@@ -2,6 +2,7 @@
 using App.Domain.DTOs.Requests;
 using App.Domain.DTOs.Responses;
 using App.Domain.Entities;
+using App.Domain.Enums;
 using App.Domain.Interfaces.Repositories;
 using App.Domain.Interfaces.Services;
 using FluentValidation;

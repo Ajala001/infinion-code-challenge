@@ -196,7 +196,7 @@ namespace App.Application.Services
             if(result > 0) return new ApiResponse<ProductResponseDto>
             {
                 IsSuccessful = true,
-                Message = "Product Created Successfully",
+                Message = "Product Updated Successfully",
                 Data = new ProductResponseDto
                 {
                     Id = product.Id,
@@ -253,7 +253,7 @@ namespace App.Application.Services
             return new PagedResponse<IEnumerable<ProductResponseDto>>
             {
                 IsSuccessful = true,
-                Message = "Courses Retrieved Successfully",
+                Message = "Products Retrieved Successfully",
                 TotalRecords = totalRecords,
                 TotalPages = totalPages,
                 PageSize = pageSize,
