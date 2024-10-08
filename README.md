@@ -36,10 +36,14 @@ To run this project, ensure you have the following installed:
     dotnet restore
    
 4. **Update the Connection String:**:
-
-   -In appsettings.json, replace the default connection string with your MySQL database connection string:
-   "ConnectionStrings": {
+In appsettings.json, replace the default connection string with your MySQL database connection string:
+```bash
+   {
+  "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=ProductDB;User=root;Password=my-secret-pw;"
+  }
+}
+
   
 
 
