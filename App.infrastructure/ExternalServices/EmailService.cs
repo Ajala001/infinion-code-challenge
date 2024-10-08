@@ -1,5 +1,6 @@
 ﻿using App.Application.IExternalServices;
 using App.Domain.DTOs.Requests;
+using App.Domain.Exceptions;
 using App.Domain.Interfaces;
 using Microsoft.Extensions.Options;
 using System.Net;
@@ -17,6 +18,7 @@ namespace App.infrastructure.ExternalServices
             _appEnvironment = appEnvironment;
             _emailSettings = emailSettings.Value;
         }
+
         public MailMessage CreateMailMessage(MailRequestDto request)
         {
             MailMessage mailMessage = new MailMessage
@@ -38,18 +40,24 @@ namespace App.infrastructure.ExternalServices
             {
                 smtpClient.Credentials = new NetworkCredential(_emailSettings.Email, _emailSettings.Password);
                 smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                try
+                {
+                    smtpClient.Send(mailMessage);
+                }
+                catch (SmtpException smtpEx)
+                {
+                    throw new EmailSmtpException(smtpEx);
+                }
             }
         }
 
-        public string CreateBody(string userName, string confimationLink)
+        public string CreateBody(string userName, string confirmationLink)
         {
             var filePath = Path.Combine(_appEnvironment.WebRootPath, "html", "ConfirmationEmail.html");
             if (!File.Exists(filePath))
             {
                 return "Path not found";
             }
-
 
             string body = string.Empty;
             using (StreamReader reader = new StreamReader(filePath))
@@ -58,7 +66,7 @@ namespace App.infrastructure.ExternalServices
             }
 
             body = body.Replace("{{UserName}}", userName);
-            body = body.Replace("{{ConfirmationLink}}", confimationLink);
+            body = body.Replace("{{ConfirmationLink}}", confirmationLink);
 
             return body;
         }
