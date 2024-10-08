@@ -35,10 +35,10 @@ To run this project, ensure you have the following installed:
    ```bash
     dotnet restore
    
-4. **Update the Connection String:**
-   ```bash
-   In appsettings.json, replace the default connection string with your MySQL database connection string:
-  "ConnectionStrings": {
+4. **Update the Connection String:**:
+
+   -In appsettings.json, replace the default connection string with your MySQL database connection string:
+   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=ProductDB;User=root;Password=my-secret-pw;"
   
 
@@ -54,7 +54,7 @@ To run this project, ensure you have the following installed:
 **API Endpoints**
 **User Registration API**
 
-   **Endpoint:** POST /api/auth/signUp
+      Endpoint: POST /api/auth/signUp
     Validation:
         Email must be in a valid format.
         Password must be at least 6 characters long, containing at least one uppercase letter, one lowercase letter, and one number.
@@ -63,7 +63,7 @@ To run this project, ensure you have the following installed:
 
 **User Login API**
 
-   **Endpoint:** POST /api/auth/signIn
+      Endpoint: POST /api/auth/signIn
 
 
 **Product CRUD Operations**
