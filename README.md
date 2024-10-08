@@ -32,9 +32,10 @@ To run this project, ensure you have the following installed:
    cd <project-directory>
    
 2. **Install Dependencies:**
+   ```bash
     dotnet restore
    
-3. **Update the Connection String:**
+4. **Update the Connection String:**
    In appsettings.json, replace the default connection string with your MySQL database connection string:
    {
   "ConnectionStrings": {
@@ -42,9 +43,14 @@ To run this project, ensure you have the following installed:
   }
 }
 
-5. **Apply Database Migrations:** If you're using Entity Framework Core, run the following command:
-   dotnet ef database update (for visual studio code users)
-   update-database (for visual studio)
+5. **Apply Database Migrations:**
+   If you're using Entity Framework Core, run the following command:
+   ```bash
+   dotnet ef database update
+
+   (for visual studio)
+   ```bash
+   update-database 
 
 API Endpoints
 User Registration API
