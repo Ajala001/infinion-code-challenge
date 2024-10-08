@@ -36,13 +36,12 @@ To run this project, ensure you have the following installed:
     dotnet restore
    
 3. **Update the Connection String:**:
-In appsettings.json, replace the default connection string with your MySQL database connection string:
-```bash
+In appsettings.json, replace the default connection string with your MySQL database connection string
    {
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=ProductDB;User=root;Password=my-secret-pw;"
   }
-}.
+}
 
 4. **Apply Database Migrations:**
    If you're using Entity Framework Core, run the following command:
