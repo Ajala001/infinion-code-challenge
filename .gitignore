@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/App.Application/bin/Debug/net8.0
+/App.Application/obj
+/App.Domain/bin/Debug/net8.0
+/App.Domain/obj
+/App.infrastructure/obj
+/App.Presentation/.vs/App.Presentation/v17
+/App.Presentation/obj
+/infinion-code-challenge-assessment/.vs/infinion-code-challenge-assessment/v17
+/infinion-code-challenge-assessment/.vs/infinion-code-challenge-assessment
+/App.infrastructure/bin/Debug/net8.0
+/App.Presentation/bin/Debug/net8.0
+/infinion-code-challenge-assessment/.vs/ProjectEvaluation
