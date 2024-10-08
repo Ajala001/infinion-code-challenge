@@ -35,7 +35,7 @@ To run this project, ensure you have the following installed:
    ```bash
     dotnet restore
    
-4. **Update the Connection String:**:
+3. **Update the Connection String:**:
 In appsettings.json, replace the default connection string with your MySQL database connection string:
 ```bash
    {
@@ -44,10 +44,8 @@ In appsettings.json, replace the default connection string with your MySQL datab
   }
 }
 
-  
 
-
-6. **Apply Database Migrations:**
+4. **Apply Database Migrations:**
    If you're using Entity Framework Core, run the following command:
    ```bash
    dotnet ef database update
