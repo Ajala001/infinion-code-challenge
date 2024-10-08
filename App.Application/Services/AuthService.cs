@@ -15,7 +15,7 @@ namespace App.Application.Services
 {
     public class AuthService(IUserRepository userRepository, IConfiguration configuration,
         IUnitOfWork unitOfWork, IEmailService emailService, IValidator<SignInDto> signInValidator,
-        IValidator<SignUpDto> signUpValidator) : IAuthService
+        IValidator<SignUpDto> signUpValidator, IFileRepository fileRepository) : IAuthService
     {
         public async Task<ApiResponse<UserResponseDto>> ConfirmEmailAsync(string email, string token)
         {
@@ -70,7 +70,7 @@ namespace App.Application.Services
 
             return new ApiResponse<string>
             {
-                IsSuccessful = false,
+                IsSuccessful = true,
                 Message = "Sign in successful",
                 Data = GenerateToken(user)
             };
@@ -95,16 +95,26 @@ namespace App.Application.Services
 
             var user = new User
             {
+                Id = Guid.NewGuid(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 Gender = request.Gender,
-                ProfilePic = request.ProfilePic,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
                 CreatedAt = DateTime.Now,
                 CreatedBy = request.Email
             };
+
+
+            if (request.ProfilePic != null)
+            {
+                var imageUpload = await fileRepository.UploadAsync(request.ProfilePic);
+                if (imageUpload != null)
+                {
+                    user.ProfilePic = imageUpload;
+                }
+            }
 
             await userRepository.CreateAsync(user);
             var result = await unitOfWork.SaveAsync();

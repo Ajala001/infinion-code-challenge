@@ -11,7 +11,7 @@ namespace App.Presentation.Controllers
     {
 
         [HttpPost("signUp")]
-        public async Task<IActionResult> SignUpAsync([FromBody] SignUpDto request)
+        public async Task<IActionResult> SignUpAsync([FromForm] SignUpDto request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var result = await sender.Send(new SignUpCommand(request));

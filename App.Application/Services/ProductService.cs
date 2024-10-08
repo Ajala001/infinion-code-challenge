@@ -77,7 +77,7 @@ namespace App.Application.Services
             if(result > 0) return new ApiResponse<ProductResponseDto>
             {
                 IsSuccessful = true,
-                Message = "Product Created Successfully"
+                Message = "Product Deleted Successfully"
             };
 
             return new ApiResponse<ProductResponseDto>
@@ -161,6 +161,10 @@ namespace App.Application.Services
             {
                 IsSuccessful = true,
                 Message = "Products Retrieved Successfuly",
+                TotalRecords = totalRecords,
+                TotalPages = totalPages,
+                PageSize = pageSize,
+                CurrentPage = pageNumber,
                 Data = paginatedResponseData
             };
         }
@@ -212,6 +216,9 @@ namespace App.Application.Services
         public async Task<PagedResponse<IEnumerable<ProductResponseDto>>> ProductFilterAsync(ProductFilterDto request)
         {
             var products = await productRepository.GetProductsAsync();
+            request.PageSize = request.PageSize > 0 ? request.PageSize : 5;
+            request.PageNumber = request.PageNumber > 0 ? request.PageNumber : 1;
+
             var searchedProducts = products.Where(product =>
                                 !string.IsNullOrEmpty(request.SearchQuery) &&
                                 (product.Name.Contains(request.SearchQuery, StringComparison.OrdinalIgnoreCase)

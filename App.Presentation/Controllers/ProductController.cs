@@ -13,7 +13,7 @@ namespace App.Presentation.Controllers
     public class ProductController(ISender sender) : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> CreateProductAsync([FromBody] CreateProductDto request)
+        public async Task<IActionResult> CreateProductAsync([FromForm] CreateProductDto request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var result = await sender.Send(new CreateProductCommand(request));
@@ -52,7 +52,7 @@ namespace App.Presentation.Controllers
 
 
         [HttpPut("{productId}")]
-        public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid productId, [FromBody] UpdateProductDto updateRequest)
+        public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid productId, [FromForm] UpdateProductDto updateRequest)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var result = await sender.Send(new UpdateProductCommand(productId, updateRequest));

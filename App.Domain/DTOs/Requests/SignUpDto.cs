@@ -1,4 +1,5 @@
 ﻿using App.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace App.Domain.DTOs.Requests
@@ -32,7 +33,7 @@ namespace App.Domain.DTOs.Requests
         [Required(ErrorMessage = "Please Select Your Gender")]
         public required Gender Gender { get; set; }
 
-        public string? ProfilePic { get; set; }
+        public IFormFile? ProfilePic { get; set; }
 
     }
 }
